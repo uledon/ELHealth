@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/profile_title"
+        android:title="@string/profile">
+        <menu>
+        <item
+            android:id="@+id/edit_your_profile_item"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="@string/edit_your_profile" />
+        </menu>
+    </item>
+     <item
+        android:id="@+id/help_title"
+        android:title="@string/help">
+           <menu>
+                 <item
+                     android:id="@+id/help_menu_item"
+                     android:icon="@drawable/ic_baseline_help_24"
+                     android:title="@string/get_help" />
+             </menu>
+     </item>
+ </menu>

@@ -1,0 +1,28 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/textColour</item>
+    </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/el_health_logo_xml</item>
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="FitnessGoalsChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name = "chipBackgroundColor">@color/fitness_goals_chips_background</item>
+        <item name="checkedIconTint">@color/textColour</item>
+    </style>
+    <style name="HowFitnessGoalsChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name = "chipBackgroundColor">@color/how_fitness_goals_chips_background</item>
+        <item name="checkedIconTint">@color/textColour</item>
+    </style>
+    <style name="AnyKneeProblemChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name = "chipBackgroundColor">@color/any_knee_problem_style</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="checkedIconTint">@color/colorWhite</item>
+    </style>
+</resources>

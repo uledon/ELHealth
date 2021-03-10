@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corners_shape"
+    android:backgroundTint="@color/colorWidget"
+    android:elevation="10dp">
+
+    <Button
+        android:id="@+id/weight_record_button"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:autoSizeMinTextSize="1sp"
+        android:background="@drawable/rounded_corners_shape"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:text="@string/record"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/weight_widget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/weight"
+        android:textColor="@color/colorAccent3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/scale_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/scale_icon"
+        android:layout_width="33dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:tint="@color/colorAccent3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/scale_icon" />
+
+    <TextView
+        android:id="@+id/kg_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="/kg"
+        android:textColor="@color/textColour"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/weight_record_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/weight_widget_layout_weight_text"
+        app:layout_constraintTop_toBottomOf="@+id/weight_widget_text" />
+
+    <EditText
+        android:id="@+id/weight_widget_layout_weight_text"
+        android:layout_width="53dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:ems="10"
+        android:hint=" -- --"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@color/textColour"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight_widget_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
