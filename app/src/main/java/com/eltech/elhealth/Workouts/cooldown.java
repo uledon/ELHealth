@@ -5,25 +5,10 @@ import android.os.Parcelable;
 
 import com.eltech.elhealth.R;
 
-public class cooldown extends Workout implements Parcelable {
+public class cooldown extends Workout {
     public cooldown (){
 
     }
-    protected cooldown(Parcel in) {
-    }
-
-    public static final Creator<cooldown> CREATOR = new Creator<cooldown>() {
-        @Override
-        public cooldown createFromParcel(Parcel in) {
-            return new cooldown(in);
-        }
-
-        @Override
-        public cooldown[] newArray(int size) {
-            return new cooldown[size];
-        }
-    };
-
     @Override
     public int getTitle() {
         return R.string.cooldown;
@@ -50,11 +35,17 @@ public class cooldown extends Workout implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
+    public boolean affectsKnee() {
+        return false;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public boolean requiresEquipments() {
+        return false;
+    }
+
+    @Override
+    public boolean requiresWeights() {
+        return false;
     }
 }

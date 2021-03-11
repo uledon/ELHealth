@@ -20,9 +20,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/transparent"
-            android:text="BACK"
+            android:text="@string/give_up"
             android:textColor="@color/textColour"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

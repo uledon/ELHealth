@@ -5,27 +5,10 @@ import android.os.Parcelable;
 
 import com.eltech.elhealth.R;
 
-public class skipping_without_rope extends Workout implements Parcelable {
+public class skipping_without_rope extends Workout{
 
     public skipping_without_rope  (){
-
     }
-
-    protected skipping_without_rope(Parcel in) {
-    }
-
-    public static final Creator<skipping_without_rope> CREATOR = new Creator<skipping_without_rope>() {
-        @Override
-        public skipping_without_rope createFromParcel(Parcel in) {
-            return new skipping_without_rope(in);
-        }
-
-        @Override
-        public skipping_without_rope[] newArray(int size) {
-            return new skipping_without_rope[size];
-        }
-    };
-
     @Override
     public int getTitle() {
         return R.string.skipping_without_rope;
@@ -43,13 +26,14 @@ public class skipping_without_rope extends Workout implements Parcelable {
 
     @Override
     public int getTimer(int timer, int level) {
-        if (level == 1){
+
+        if (level <= 3){
             return 20;
         }
-        else if(level == 2){
+        else if(level > 3 && level <= 6 ){
             return 25;
         }
-        else if(level == 3){
+        else if(level > 6){
             return 30;
         }
         else{
@@ -63,11 +47,18 @@ public class skipping_without_rope extends Workout implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
+    public boolean affectsKnee() {
+        return true;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public boolean requiresEquipments() {
+        return false;
     }
+
+    @Override
+    public boolean requiresWeights() {
+        return false;
+    }
+
 }

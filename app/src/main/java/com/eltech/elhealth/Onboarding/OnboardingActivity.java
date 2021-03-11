@@ -95,7 +95,7 @@ public class OnboardingActivity extends AppCompatActivity {
             height_edit_text.setText(sharedPreferences.getString("height",""));
             weight_edit_text.setText(sharedPreferences.getString("weight_text",""));
             activity_onboarding_seekBar.setProgress(Integer.parseInt(String.valueOf(sharedPreferences.getString("seekBar_current_text","0"))));
-            seekBar_current_text.setText(sharedPreferences.getString("seekBar_current_text",""));
+            seekBar_current_text.setText(sharedPreferences.getString("seekBar_current_text","0"));
             lose_fat_chip.setChecked(sharedPreferences.getBoolean("lose_fat_chip",false));
             build_muscle_chip.setChecked(sharedPreferences.getBoolean("build_muscle_chip",false));
             improve_endurance_chip.setChecked(sharedPreferences.getBoolean("improve_endurance_chip",false));
@@ -121,7 +121,7 @@ public class OnboardingActivity extends AppCompatActivity {
                         //setting the edit text text itself.
                         if(year >= current_year-8){
                             dob_edit_text.setText("");
-                            Toast.makeText(OnboardingActivity.this,"You have to be at least 10",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OnboardingActivity.this,"You have to be at least 8",Toast.LENGTH_SHORT).show(); //make string variable
                         }
                         else {
                             dob_edit_text.setText(String.format("%02d/%02d/%02d", dayOfMonth, monthOfYear + 1, year));

@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.text.Html;
 import android.view.MotionEvent;
@@ -17,8 +18,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.eltech.elhealth.Tools.DataClass;
 import com.eltech.elhealth.Tools.WorkingOut_PagerAdapter;
 import com.eltech.elhealth.Workouts.Workout;
+import com.eltech.elhealth.Workouts.WorkoutsClass;
 import com.eltech.elhealth.Workouts.cooldown;
 import com.eltech.elhealth.Workouts.mountain_climber;
 
@@ -33,7 +36,10 @@ public class WorkingOutActivity extends AppCompatActivity {
     public Button back_button;
     public int currentPage;
     public boolean finish;
-    ArrayList<Workout> cardio_workouts;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    private final static String SHARED_PREFS = "sharedPrefs";
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +49,21 @@ public class WorkingOutActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.activity_working_out_linearLayout);
         next_button = findViewById(R.id.activity_working_out_next_button);
         back_button = findViewById(R.id.activity_working_out_back_button);
-        cardio_workouts = getIntent().getParcelableArrayListExtra("CardioWorkouts");
+        sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        String level_string = sharedPreferences.getString("seekBar_current_text","0");
+        int level;
+        try{
+            level = Integer.parseInt(level_string);
+        }
+        catch(NumberFormatException e){
+            level = 0;
+            e.printStackTrace();
+        }
         // instead of recreating activities;
         // retrieve array list from the previous activity.
-        if(cardio_workouts!=null){
-            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this,cardio_workouts,2,10);// make more dynamic later
+        if(WorkoutsClass.getLoseFatWorkouts()!=null){
+            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this, WorkoutsClass.getLoseFatWorkouts(),level,10);// make more dynamic later
             slideViewPager.setAdapter(workingOut_pagerAdapter);
             addDotsIndicator(0);
         }
@@ -55,7 +71,20 @@ public class WorkingOutActivity extends AppCompatActivity {
         slideViewPager.setHorizontalScrollBarEnabled(false);
         slideViewPager.addOnPageChangeListener(viewListener);
         next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
-        back_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage-1));
+        back_button.setOnClickListener(v -> {
+                new AlertDialog.Builder(WorkingOutActivity.this)
+                        .setTitle(getString(R.string.give_up_title))
+                        .setMessage(getString(R.string.give_up_message))
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(v.getContext(),PointsActivity.class);
+                                startActivityForResult(intent, 0 );
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(R.string.no, null)
+                        .show();
+        });
     }
 
     /**
@@ -92,15 +121,11 @@ public class WorkingOutActivity extends AppCompatActivity {
             currentPage = position;
             if (position == 0){
                 next_button.setEnabled(true);
-                back_button.setEnabled(false);
-                back_button.setVisibility(View.INVISIBLE);
                 next_button.setText(getString(R.string.next));
                 next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
-                back_button.setText("");
             }
             else if (position == dots.length-1){
                 next_button.setEnabled(true);
-                back_button.setVisibility(View.VISIBLE);
                 next_button.setText(getString(R.string.finish));
                 next_button.setOnClickListener(view -> {
                     Intent myIntent = new Intent(view.getContext(), PointsActivity.class);
@@ -110,32 +135,14 @@ public class WorkingOutActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean(FINISH,finish);
                     editor.apply();
-                    //Toast.makeText(getBaseContext(),"Well Done", Toast.LENGTH_SHORT).show();
                     finish();
                 });
 
             }
             else{
                 next_button.setEnabled(true);
-                back_button.setEnabled(true);
-                back_button.setVisibility(View.VISIBLE);
                 next_button.setText(getString(R.string.next));
                 next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
-                back_button.setText(getString(R.string.give_up));
-                back_button.setOnClickListener(v-> {
-                    new AlertDialog.Builder(WorkingOutActivity.this)
-                            .setTitle(getString(R.string.give_up_title))  // GPS not found
-                            .setMessage(getString(R.string.give_up_message)) // Want to enable?
-                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent = new Intent(v.getContext(),PointsActivity.class);
-                                    startActivityForResult(intent, 0 );
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton(R.string.no, null)
-                            .show();
-                });
             }
         }
 

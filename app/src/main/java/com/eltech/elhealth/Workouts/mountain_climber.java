@@ -5,25 +5,10 @@ import android.os.Parcelable;
 
 import com.eltech.elhealth.R;
 
-public class mountain_climber extends Workout implements Parcelable {
+public class mountain_climber extends Workout{
     public mountain_climber(){
 
     }
-    protected mountain_climber(Parcel in) {
-    }
-
-    public static final Creator<mountain_climber> CREATOR = new Creator<mountain_climber>() {
-        @Override
-        public mountain_climber createFromParcel(Parcel in) {
-            return new mountain_climber(in);
-        }
-
-        @Override
-        public mountain_climber[] newArray(int size) {
-            return new mountain_climber[size];
-        }
-    };
-
     @Override
     public int getTitle() {
         return R.string.mountain_climber;
@@ -31,19 +16,19 @@ public class mountain_climber extends Workout implements Parcelable {
 
     @Override
     public String getReps(int level) {
-        if (level == 1){
+
+        if (level <= 3){
             return "x 10";
         }
-        else if(level == 2){
+        else if(level > 3 && level <= 6 ){
             return "x 15";
         }
-        else if(level == 3){
+        else if(level > 6){
             return "x20";
         }
         else{
-            return "x 25";
+            return "not found";
         }
-
     }
 
     @Override
@@ -58,15 +43,22 @@ public class mountain_climber extends Workout implements Parcelable {
 
     @Override
     public int getImage() {
-        return R.drawable.health_logo;
-    }
-
-    @Override
-    public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public boolean affectsKnee() {
+        return false;
     }
+
+    @Override
+    public boolean requiresEquipments() {
+        return false;
+    }
+
+    @Override
+    public boolean requiresWeights() {
+        return false;
+    }
+
 }

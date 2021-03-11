@@ -5,22 +5,7 @@ import android.os.Parcelable;
 
 import com.eltech.elhealth.R;
 
-public class lunges extends Workout implements Parcelable {
-    public lunges() {
-    }
-    protected lunges(Parcel in) {
-    }
-    public static final Creator<lunges> CREATOR = new Creator<lunges>() {
-        @Override
-        public lunges createFromParcel(Parcel in) {
-            return new lunges(in);
-        }
-
-        @Override
-        public lunges[] newArray(int size) {
-            return new lunges[size];
-        }
-    };
+public class lunges extends Workout {
 
     @Override
     public int getTitle() {
@@ -29,17 +14,17 @@ public class lunges extends Workout implements Parcelable {
 
     @Override
     public String getReps(int level) {
-        if (level == 1){
+        if (level <= 3){
             return "x 10";
         }
-        else if(level == 2){
+        else if(level > 3 && level <= 6 ){
             return "x 15";
         }
-        else if(level == 3){
+        else if(level > 6){
             return "x20";
         }
         else{
-            return "x 25";
+            return "not found";
         }
     }
 
@@ -59,11 +44,18 @@ public class lunges extends Workout implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
+    public boolean affectsKnee() {
+        return false;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public boolean requiresEquipments() {
+        return false;
     }
+
+    @Override
+    public boolean requiresWeights() {
+        return false;
+    }
+
 }

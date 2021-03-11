@@ -22,7 +22,7 @@
     </style>
     <style name="AnyKneeProblemChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
         <item name = "chipBackgroundColor">@color/any_knee_problem_style</item>
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="checkedIconTint">@color/colorWhite</item>
+        <item name="android:textColor">@color/textColour</item>
+        <item name="checkedIconTint">@color/textColour</item>
     </style>
 </resources>

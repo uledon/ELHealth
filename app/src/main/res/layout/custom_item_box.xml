@@ -47,7 +47,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/workout_image"
-            android:textColor="@color/colorAccent2"
+            android:textColor="@color/colorAccent4"
             android:textSize="18sp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
