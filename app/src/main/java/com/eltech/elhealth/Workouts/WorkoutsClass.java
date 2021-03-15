@@ -8,9 +8,10 @@ public class WorkoutsClass {
 //                new lunges(),
                 new mountain_climber(),
                 new skipping_without_rope(),
+                new mountain_climber(),
                 new skipping_without_rope(),
-                new skipping_without_rope(),
-                new skipping_without_rope()
+                new mountain_climber(),
+                new mountain_climber()
 
         };
         return workouts;

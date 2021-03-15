@@ -83,7 +83,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         @SuppressLint("SimpleDateFormat") String date =
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         //gets shared preferences to store and retrieve values
-
         sharedPreferences.getString(CURRENT_DATE,"0");
         System.out.println(sharedPreferences.getString(WATER_COUNT,"0"));
         water_plus_button = water_widget.findViewById(R.id.water_plus_button);

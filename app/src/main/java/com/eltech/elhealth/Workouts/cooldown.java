@@ -25,7 +25,7 @@ public class cooldown extends Workout {
     }
 
     @Override
-    public int getTimer(int timer, int level) {
+    public long getTimer(long timer, int level) {
         return timer;
     }
 

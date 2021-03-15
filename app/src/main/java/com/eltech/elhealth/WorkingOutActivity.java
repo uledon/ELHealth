@@ -32,8 +32,8 @@ public class WorkingOutActivity extends AppCompatActivity {
     public LinearLayout linearLayout;
     public WorkingOut_PagerAdapter workingOut_pagerAdapter;
     public TextView[] dots;
-    public Button next_button;
-    public Button back_button;
+    //public Button next_button;
+    //public Button back_button;
     public int currentPage;
     public boolean finish;
     SharedPreferences sharedPreferences;
@@ -47,8 +47,8 @@ public class WorkingOutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_working_out);
         slideViewPager = findViewById(R.id.activity_working_out_slideViewPager);
         linearLayout = findViewById(R.id.activity_working_out_linearLayout);
-        next_button = findViewById(R.id.activity_working_out_next_button);
-        back_button = findViewById(R.id.activity_working_out_back_button);
+        //next_button = findViewById(R.id.activity_working_out_next_button);
+        //back_button = findViewById(R.id.activity_working_out_back_button);
         sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         editor = sharedPreferences.edit();
         String level_string = sharedPreferences.getString("seekBar_current_text","0");
@@ -62,29 +62,27 @@ public class WorkingOutActivity extends AppCompatActivity {
         }
         // instead of recreating activities;
         // retrieve array list from the previous activity.
-        if(WorkoutsClass.getLoseFatWorkouts()!=null){
-            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this, WorkoutsClass.getLoseFatWorkouts(),level,10);// make more dynamic later
+            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this,this, WorkoutsClass.getLoseFatWorkouts(),level,10);// make more dynamic later
             slideViewPager.setAdapter(workingOut_pagerAdapter);
             addDotsIndicator(0);
-        }
         slideViewPager.setOnTouchListener((v, event) -> true);
         slideViewPager.setHorizontalScrollBarEnabled(false);
         slideViewPager.addOnPageChangeListener(viewListener);
-        next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
-        back_button.setOnClickListener(v -> {
-                new AlertDialog.Builder(WorkingOutActivity.this)
-                        .setTitle(getString(R.string.give_up_title))
-                        .setMessage(getString(R.string.give_up_message))
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(v.getContext(),PointsActivity.class);
-                                startActivityForResult(intent, 0 );
-                                finish();
-                            }
-                        })
-                        .setNegativeButton(R.string.no, null)
-                        .show();
-        });
+        //next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
+//        back_button.setOnClickListener(v -> {
+//                new AlertDialog.Builder(WorkingOutActivity.this)
+//                        .setTitle(getString(R.string.give_up_title))
+//                        .setMessage(getString(R.string.give_up_message))
+//                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                Intent intent = new Intent(v.getContext(),PointsActivity.class);
+//                                startActivityForResult(intent, 0 );
+//                                finish();
+//                            }
+//                        })
+//                        .setNegativeButton(R.string.no, null)
+//                        .show();
+//        });
     }
 
     /**
@@ -102,14 +100,14 @@ public class WorkingOutActivity extends AppCompatActivity {
             linearLayout.addView(dots[i]);
         }
         if (dots.length > 0){
-            dots[position].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            dots[position].setTextColor(getResources().getColor(R.color.colorAccent4));
         }
     }
 
     /**
      * Sets the next and finish text on the respective buttons depending on the position
      */
-    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+    public ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         }
@@ -119,30 +117,34 @@ public class WorkingOutActivity extends AppCompatActivity {
         public void onPageSelected(int position) {
             addDotsIndicator(position);
             currentPage = position;
+            DataClass.print("working out activity position PagerAdapter: " + position);
             if (position == 0){
-                next_button.setEnabled(true);
-                next_button.setText(getString(R.string.next));
-                next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
+//                next_button.setEnabled(true);
+//                next_button.setText(getString(R.string.next));
+//
+//                next_button.setOnClickListener(v -> {slideViewPager.setCurrentItem(currentPage + 1);
+                //});
             }
             else if (position == dots.length-1){
-                next_button.setEnabled(true);
-                next_button.setText(getString(R.string.finish));
-                next_button.setOnClickListener(view -> {
-                    Intent myIntent = new Intent(view.getContext(), PointsActivity.class);
-                    startActivityForResult(myIntent, 0);
-                    finish = true;
-                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(FINISH,finish);
-                    editor.apply();
-                    finish();
-                });
+//                next_button.setEnabled(true);
+//                next_button.setText(getString(R.string.finish));
+//                next_button.setOnClickListener(view -> {
+//                    Intent myIntent = new Intent(view.getContext(), PointsActivity.class);
+//                    startActivityForResult(myIntent, 0);
+//                    finish = true;
+//                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putBoolean(FINISH,finish);
+//                    editor.apply();
+//                    finish();
+//                });
 
             }
             else{
-                next_button.setEnabled(true);
-                next_button.setText(getString(R.string.next));
-                next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
+//                next_button.setEnabled(true);
+//                next_button.setText(getString(R.string.next));
+//                next_button.setOnClickListener(v -> {slideViewPager.setCurrentItem(currentPage + 1);
+//                });
             }
         }
 
@@ -158,6 +160,9 @@ public class WorkingOutActivity extends AppCompatActivity {
                 .setTitle(getString(R.string.give_up_title))
                 .setMessage(getString(R.string.give_up_message))
                 .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                    if(workingOut_pagerAdapter.countDownTimer!=null){
+                        workingOut_pagerAdapter.countDownTimer.cancel();
+                    }
                     Intent intent = new Intent(WorkingOutActivity.this,PointsActivity.class);
                     startActivityForResult(intent, 0 );
                     finish();

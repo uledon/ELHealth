@@ -37,7 +37,7 @@ public class mountain_climber extends Workout{
     }
 
     @Override
-    public int getTimer(int timer, int level) {
+    public long getTimer(long timer, int level) {
         return 0;
     }
 

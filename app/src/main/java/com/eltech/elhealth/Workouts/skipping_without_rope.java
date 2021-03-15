@@ -25,7 +25,7 @@ public class skipping_without_rope extends Workout{
     }
 
     @Override
-    public int getTimer(int timer, int level) {
+    public long getTimer(long timer, int level) {
 
         if (level <= 3){
             return 20;

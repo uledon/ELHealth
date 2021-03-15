@@ -34,7 +34,7 @@ public class lunges extends Workout {
     }
 
     @Override
-    public int getTimer(int timer,int level) {
+    public long getTimer(long timer, int level) {
         return 0;
     }
 
