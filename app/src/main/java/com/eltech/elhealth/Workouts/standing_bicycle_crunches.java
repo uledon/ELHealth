@@ -1,17 +1,13 @@
 package com.eltech.elhealth.Workouts;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import androidx.annotation.DrawableRes;
 
 import com.eltech.elhealth.R;
 
-public class skipping_without_rope extends Workout{
-
-    public skipping_without_rope  (){
-    }
+public class standing_bicycle_crunches extends Workout {
     @Override
     public int getTitle() {
-        return R.string.skipping_without_rope;
+        return R.string.standing_bicycle_crunches;
     }
 
     @Override
@@ -26,7 +22,6 @@ public class skipping_without_rope extends Workout{
 
     @Override
     public long getTimer(long timer, int level) {
-
         if (level <= 3){
             return 20;
         }
@@ -42,13 +37,13 @@ public class skipping_without_rope extends Workout{
     }
 
     @Override
-    public int getImage() {
-        return R.drawable.skip_without_rope_icon;
+    public @DrawableRes int getImage() {
+        return R.drawable.standing_bicycle_crunches_icon;
     }
 
     @Override
     public boolean affectsKnee() {
-        return true;
+        return false;
     }
 
     @Override
@@ -60,5 +55,4 @@ public class skipping_without_rope extends Workout{
     public boolean requiresWeights() {
         return false;
     }
-
 }

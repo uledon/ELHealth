@@ -1,7 +1,5 @@
 package com.eltech.elhealth.Workouts;
 
-import android.os.Parcelable;
-
 import androidx.annotation.DrawableRes;
 
 public abstract class Workout{

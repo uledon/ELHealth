@@ -75,4 +75,23 @@
     <string name="im_fine">I\'m fine</string>
     <string name="no_jumping">No Jumping (apartment friendly)</string>
     <string name="low_impact">Low impact (friendly to overweight people)</string>
+    <string name="tricept_dips" translatable="false">Tricept Dips</string>
+    <string name="plank" translatable="false">Plank</string>
+    <string name="high_stepping" translatable="false">High Stepping</string>
+    <string name="standing_bicycle_crunches" translatable="false">Standing Bicycle Crunches</string>
+    <string name="long_arm_crunches" translatable="false">Long Arm Crunches</string>
+    <string name="flutter_kicks" translatable="false">Flutter Kicks</string>
+    <string name="crunches_with_legs_raised" translatable="false">Crunches With Legs Raised</string>
+    <string name="reclined_oblique_twist" translatable="false">Reclined Oblique Twist</string>
+    <string name="cobra_stretch" translatable="false">Cobra Stretch</string>
+    <string name="push_up" translatable="false">Push-ups</string>
+    <string name="backward_lunge" translatable="false">Backward Lunge</string>
+    <string name="burpees" translatable="false">Burpees</string>
+    <string name="scissors" translatable="false">Scissors</string>
+    <string name="inchworms" translatable="false">Inchworms</string>
+    <string name="heel_touches" translatable="false">Heel Touches</string>
+    <string name="reverse_crunches" translatable="false">Reverse Crunches</string>
+    <string name="squats" translatable="false">Squats</string>
+    <string name="plank_jacks" translatable="false">Plank Jacks</string>
+    <string name="jumping_jacks" translatable="false">Jumping Jacks</string>
 </resources>

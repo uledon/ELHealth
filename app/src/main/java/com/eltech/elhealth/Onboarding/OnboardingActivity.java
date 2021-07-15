@@ -148,63 +148,63 @@ public class OnboardingActivity extends AppCompatActivity {
         });
         //saving all of the chips values
         //fitness goals chips
-        lose_fat_chip.setOnClickListener(v->{
-                editor.putBoolean("lose_fat_chip",lose_fat_chip.isChecked());
-                editor.apply();
-            DataClass.print("lose_fat_chip has been clicked: " + sharedPreferences.getBoolean("lose_fat_chip",false));
-        });
-        build_muscle_chip.setOnClickListener(v->{
-            editor.putBoolean("build_muscle_chip",build_muscle_chip.isChecked());
-            editor.apply();
-            DataClass.print("build_muscle_chip has been clicked: " + sharedPreferences.getBoolean("build_muscle_chip",false));
-        });
-        improve_endurance_chip.setOnClickListener(v->{
-            editor.putBoolean("improve_endurance_chip",improve_endurance_chip.isChecked());
-            editor.apply();
-            DataClass.print("improve_endurance_chip has been clicked: " + sharedPreferences.getBoolean("improve_endurance_chip",false));
-        });
-        maintain_body_shape.setOnClickListener(v->{
-            editor.putBoolean("maintain_body_shape",maintain_body_shape.isChecked());
-            editor.apply();
-            DataClass.print("maintain_body_shape has been clicked: " + sharedPreferences.getBoolean("maintain_body_shape",false));
-        });
-        improve_athletic_skills_chip.setOnClickListener(v->{
-            editor.putBoolean("improve_athletic_skills_chip",improve_athletic_skills_chip.isChecked());
-            editor.apply();
-            DataClass.print("improve_athletic_skills_chip has been clicked: " + sharedPreferences.getBoolean("improve_athletic_skills_chip",false));
-        });
+//        lose_fat_chip.setOnClickListener(v->{
+//                editor.putBoolean("lose_fat_chip",lose_fat_chip.isChecked());
+//                editor.apply();
+//            DataClass.print("lose_fat_chip has been clicked: " + sharedPreferences.getBoolean("lose_fat_chip",false));
+//        });
+//        build_muscle_chip.setOnClickListener(v->{
+//            editor.putBoolean("build_muscle_chip",build_muscle_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("build_muscle_chip has been clicked: " + sharedPreferences.getBoolean("build_muscle_chip",false));
+//        });
+//        improve_endurance_chip.setOnClickListener(v->{
+//            editor.putBoolean("improve_endurance_chip",improve_endurance_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("improve_endurance_chip has been clicked: " + sharedPreferences.getBoolean("improve_endurance_chip",false));
+//        });
+//        maintain_body_shape.setOnClickListener(v->{
+//            editor.putBoolean("maintain_body_shape",maintain_body_shape.isChecked());
+//            editor.apply();
+//            DataClass.print("maintain_body_shape has been clicked: " + sharedPreferences.getBoolean("maintain_body_shape",false));
+//        });
+//        improve_athletic_skills_chip.setOnClickListener(v->{
+//            editor.putBoolean("improve_athletic_skills_chip",improve_athletic_skills_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("improve_athletic_skills_chip has been clicked: " + sharedPreferences.getBoolean("improve_athletic_skills_chip",false));
+//        });
         //how achieve fitness goals
-        using_bodyweight_chip.setOnClickListener(v->{
-            editor.putBoolean("using_bodyweight_chip",using_bodyweight_chip.isChecked());
-            editor.apply();
-            DataClass.print("using_bodyweight_chip has been clicked: " + sharedPreferences.getBoolean("using_bodyweight_chip",false));
-        });
-        using_gym_equipment_chip.setOnClickListener(v->{
-            editor.putBoolean("using_gym_equipment_chip",using_gym_equipment_chip.isChecked());
-            editor.apply();
-            DataClass.print("using_gym_equipment_chip has been clicked: " + sharedPreferences.getBoolean("using_gym_equipment_chip",false));
-        });
-        using_weights_chip.setOnClickListener(v->{
-            editor.putBoolean("using_weights_chip",using_weights_chip.isChecked());
-            editor.apply();
-            DataClass.print("using_weights_chip has been clicked: " + sharedPreferences.getBoolean("using_weights_chip",false));
-        });
+//        using_bodyweight_chip.setOnClickListener(v->{
+//            editor.putBoolean("using_bodyweight_chip",using_bodyweight_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("using_bodyweight_chip has been clicked: " + sharedPreferences.getBoolean("using_bodyweight_chip",false));
+//        });
+//        using_gym_equipment_chip.setOnClickListener(v->{
+//            editor.putBoolean("using_gym_equipment_chip",using_gym_equipment_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("using_gym_equipment_chip has been clicked: " + sharedPreferences.getBoolean("using_gym_equipment_chip",false));
+//        });
+//        using_weights_chip.setOnClickListener(v->{
+//            editor.putBoolean("using_weights_chip",using_weights_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("using_weights_chip has been clicked: " + sharedPreferences.getBoolean("using_weights_chip",false));
+//        });
         //knee problems chips
-        im_fine_chip.setOnClickListener(v->{
-            editor.putBoolean("im_fine_chip",im_fine_chip.isChecked());
-            editor.apply();
-            DataClass.print("im_fine_chip has been clicked: " + sharedPreferences.getBoolean("im_fine_chip",false));
-        });
-        no_jumping_chip.setOnClickListener(v->{
-            editor.putBoolean("no_jumping_chip",no_jumping_chip.isChecked());
-            editor.apply();
-            DataClass.print("no_jumping_chip has been clicked: " + sharedPreferences.getBoolean("no_jumping_chip",false));
-        });
-        low_impact_chip.setOnClickListener(v->{
-            editor.putBoolean("low_impact_chip",low_impact_chip.isChecked());
-            editor.apply();
-            DataClass.print("low_impact_chip has been clicked: " + sharedPreferences.getBoolean("low_impact_chip",false));
-        });
+//        im_fine_chip.setOnClickListener(v->{
+//            editor.putBoolean("im_fine_chip",im_fine_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("im_fine_chip has been clicked: " + sharedPreferences.getBoolean("im_fine_chip",false));
+//        });
+//        no_jumping_chip.setOnClickListener(v->{
+//            editor.putBoolean("no_jumping_chip",no_jumping_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("no_jumping_chip has been clicked: " + sharedPreferences.getBoolean("no_jumping_chip",false));
+//        });
+//        low_impact_chip.setOnClickListener(v->{
+//            editor.putBoolean("low_impact_chip",low_impact_chip.isChecked());
+//            editor.apply();
+//            DataClass.print("low_impact_chip has been clicked: " + sharedPreferences.getBoolean("low_impact_chip",false));
+//        });
         //setting finish button by checking if the required fields have been checked.
         activity_onboarding_finish_button.setOnClickListener(v -> {
             if(canFinish()){
@@ -217,6 +217,17 @@ public class OnboardingActivity extends AppCompatActivity {
                 editor.putString("height",String.valueOf(height_edit_text.getText()));
                 editor.putString("weight_text",String.valueOf(weight_edit_text.getText()));
                 editor.putString("seekBar_current_text",String.valueOf(seekBar_current_text.getText()));
+                editor.putBoolean("lose_fat_chip",lose_fat_chip.isChecked());
+                editor.putBoolean("build_muscle_chip",build_muscle_chip.isChecked());
+                editor.putBoolean("improve_endurance_chip",improve_endurance_chip.isChecked());
+                editor.putBoolean("maintain_body_shape",maintain_body_shape.isChecked());
+                editor.putBoolean("improve_athletic_skills_chip",improve_athletic_skills_chip.isChecked());
+                editor.putBoolean("using_bodyweight_chip",using_bodyweight_chip.isChecked());
+                editor.putBoolean("using_gym_equipment_chip",using_gym_equipment_chip.isChecked());
+                editor.putBoolean("using_weights_chip",using_weights_chip.isChecked());
+                editor.putBoolean("im_fine_chip",im_fine_chip.isChecked());
+                editor.putBoolean("no_jumping_chip",no_jumping_chip.isChecked());
+                editor.putBoolean("low_impact_chip",low_impact_chip.isChecked());
                 editor.apply();
               DataClass.print(
                       "name is: " + String.valueOf(name_edit_text.getText()) + "\n" +

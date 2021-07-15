@@ -1,54 +1,49 @@
 package com.eltech.elhealth.Workouts;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import androidx.annotation.DrawableRes;
 
 import com.eltech.elhealth.R;
 
-public class skipping_without_rope extends Workout{
-
-    public skipping_without_rope  (){
-    }
+public class tricept_dips extends Workout {
     @Override
     public int getTitle() {
-        return R.string.skipping_without_rope;
+        return R.string.tricept_dips;
     }
 
     @Override
     public String getReps(int level) {
-        return null;
+        if (level <= 3){
+            return "x 10";
+        }
+        else if(level > 3 && level <= 6 ){
+            return "x 15";
+        }
+        else if(level > 6){
+            return "x20";
+        }
+        else{
+            return "not found";
+        }
     }
 
     @Override
     public boolean hasTimer() {
-        return true;
+        return false;
     }
 
     @Override
     public long getTimer(long timer, int level) {
-
-        if (level <= 3){
-            return 20;
-        }
-        else if(level > 3 && level <= 6 ){
-            return 25;
-        }
-        else if(level > 6){
-            return 30;
-        }
-        else{
-            return 40;
-        }
+        return 0;
     }
 
     @Override
-    public int getImage() {
-        return R.drawable.skip_without_rope_icon;
+    public @DrawableRes int getImage() {
+        return R.drawable.tricept_dips_icon;
     }
 
     @Override
     public boolean affectsKnee() {
-        return true;
+        return false;
     }
 
     @Override
@@ -60,5 +55,4 @@ public class skipping_without_rope extends Workout{
     public boolean requiresWeights() {
         return false;
     }
-
 }

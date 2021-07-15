@@ -3,6 +3,8 @@ package com.eltech.elhealth.Workouts;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.DrawableRes;
+
 import com.eltech.elhealth.R;
 
 public class lunges extends Workout {
@@ -39,13 +41,14 @@ public class lunges extends Workout {
     }
 
     @Override
-    public int getImage() {
-        return 0;
+    public @DrawableRes
+    int getImage() {
+        return R.drawable.lunges_icon;
     }
 
     @Override
     public boolean affectsKnee() {
-        return false;
+        return true;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.eltech.elhealth.Workouts;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.DrawableRes;
+
 import com.eltech.elhealth.R;
 
 public class mountain_climber extends Workout{
@@ -16,7 +18,6 @@ public class mountain_climber extends Workout{
 
     @Override
     public String getReps(int level) {
-
         if (level <= 3){
             return "x 10";
         }
@@ -24,7 +25,7 @@ public class mountain_climber extends Workout{
             return "x 15";
         }
         else if(level > 6){
-            return "x20";
+            return "x 20";
         }
         else{
             return "not found";
@@ -42,8 +43,9 @@ public class mountain_climber extends Workout{
     }
 
     @Override
-    public int getImage() {
-        return 0;
+    public @DrawableRes
+    int getImage() {
+        return R.drawable.mountain_climbers_icon;
     }
 
     @Override

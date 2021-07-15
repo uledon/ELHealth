@@ -55,7 +55,7 @@
     <string name="help">Hilfe</string>
     <string name="profile">Profil</string>
     <string name="fitness_goals_title">Was sind deine Fitnessziele?</string>
-    <string name="skipping_without_rope" translatable="false">Überspringen ohne Seil</string>
+    <string name="skipping_without_rope">Überspringen ohne Seil</string>
     <string name="lunges">Ausfallschritte</string>
     <string name="lose_fat">Abnehmen</string>
     <string name="build_muscle">Muskeln aufbauen / stärker werden</string>

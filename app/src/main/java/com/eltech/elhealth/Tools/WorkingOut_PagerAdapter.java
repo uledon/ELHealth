@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
@@ -39,12 +41,13 @@ public class WorkingOut_PagerAdapter extends PagerAdapter {
         this.workouts = workouts;
         this.level = level;
         this.activity = activity;
-        this.timer = timer *1000;
+        this.timer = timer;
     }
     @Override
     public int getCount() {
         return workouts.length;
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
     @SuppressLint("SetTextI18n")
     @Override
@@ -75,7 +78,10 @@ public class WorkingOut_PagerAdapter extends PagerAdapter {
                     .setNegativeButton(R.string.no, null)
                     .show();
         });
-        slideImageView.setImageResource(current.getImage());
+        if(current.getImage()!=0){
+            slideImageView.setForeground(context.getDrawable(current.getImage()));
+        }
+        //slideImageView.setFore(activity.getColor(R.color.textColour));
         slideHeading.setText(current.getTitle());
 //        DataClass.print("current in adapter is: " + context.getString(current.getTitle()));
         if(current.hasTimer()){

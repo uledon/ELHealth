@@ -3,6 +3,8 @@ package com.eltech.elhealth.Workouts;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.DrawableRes;
+
 import com.eltech.elhealth.R;
 
 public class cooldown extends Workout {
@@ -30,8 +32,9 @@ public class cooldown extends Workout {
     }
 
     @Override
-    public int getImage() {
-        return 0;
+    public @DrawableRes
+    int getImage() {
+        return R.drawable.cooldown_icon;
     }
 
     @Override

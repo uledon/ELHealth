@@ -62,7 +62,7 @@ public class WorkingOutActivity extends AppCompatActivity {
         }
         // instead of recreating activities;
         // retrieve array list from the previous activity.
-            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this,this, WorkoutsClass.getLoseFatWorkouts(),level,10);// make more dynamic later
+            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this,this, TrainActivity.todayWorkouts,level,10);// make more dynamic later
             slideViewPager.setAdapter(workingOut_pagerAdapter);
             addDotsIndicator(0);
         slideViewPager.setOnTouchListener((v, event) -> true);

@@ -53,8 +53,14 @@
 
     <ImageView
         android:id="@+id/activity_working_out_slide_image"
-        android:layout_width="277dp"
-        android:layout_height="347dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/textColour"
         app:layout_constraintBottom_toTopOf="@+id/activity_working_out_slide_heading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

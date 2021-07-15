@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="2dp"
@@ -12,42 +13,60 @@
     android:elevation="10dp"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/workout_image"
-            android:layout_width="129dp"
-            android:layout_height="82dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignStart="@id/workout_reps_text"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp" />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:foregroundGravity="center|fill_vertical"
+            android:foregroundTint="@color/textColour"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/workout_reps_text"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="m" />
 
         <TextView
             android:id="@+id/workout_item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="-1dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/workout_image"
             android:textColor="@color/textColour"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/workout_reps_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/workout_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/workout_reps_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/workout_item_title"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/workout_image"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/colorAccent4"
-            android:textSize="18sp" />
-    </RelativeLayout>
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/workout_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
