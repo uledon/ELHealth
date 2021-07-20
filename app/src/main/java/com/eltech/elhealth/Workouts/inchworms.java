@@ -37,7 +37,7 @@ public class inchworms extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.inchworm_icon;
     }
 
     @Override

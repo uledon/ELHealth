@@ -33,7 +33,7 @@
     <string name="eat_desc">Questa App ti permetterà di allenarti a seconda della struttura e delle capacità del tuo corpo. Ci saranno molte routine diverse che ti aiuteranno ad allenare diverse parti del tuo corpo.</string>
     <string name="yoga_desc">Questa App supporterà presto anche lo Yoga per rilassarti e allungare i muscoli e prepararti per il prossimo allenamento</string>
     <string name="day">Giorno</string>
-    <string name="glasses">/8 Bicchieri</string>
+    <string name="glasses">/8 Vidrio</string>
     <string name="gender_title">Quale delle seguenti affermazioni ti descrive più accuratamente?</string>
     <string name="male_text">Maschio</string>
     <string name="female_text">Femmina</string>
@@ -72,4 +72,9 @@
     <string name="im_fine">Sto bene</string>
     <string name="no_jumping">Nessun salto (adatto all\'appartamento)</string>
     <string name="low_impact">Basso impatto (amichevole per le persone in sovrappeso)</string>
+    <string name="choose_cool_down">Scegli un tempo di defaticamento personalizzato</string>
+    <string name="enter_calories">Inserisci la quantità di calorie</string>
+    <string name="no_number_entered">Nessun numero inserito</string>
+    <string name="cannnot_subtract">Impossibile sottrarre</string>
+    <string name="goals_based_foods">Gli alimenti si basano sui tuoi obiettivi di fitness</string>
 </resources>

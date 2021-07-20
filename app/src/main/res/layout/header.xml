@@ -26,6 +26,8 @@
         android:id="@+id/authenticator_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
         android:text="@string/get_fit_the_right_way"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />

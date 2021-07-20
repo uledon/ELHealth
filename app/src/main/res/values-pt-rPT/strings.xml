@@ -72,4 +72,9 @@
     <string name="im_fine">" Estou bem"</string>
     <string name="no_jumping">Sem pular (apartamento amigável)</string>
     <string name="low_impact">Baixo impacto (amigável para pessoas com sobrepeso)</string>
+    <string name="choose_cool_down">Escolha um tempo de resfriamento personalizado</string>
+    <string name="enter_calories">Insira a quantidade de calorias</string>
+    <string name="no_number_entered">Nenhum número inserido</string>
+    <string name="cannnot_subtract">Não pode subtrair</string>
+    <string name="goals_based_foods">Os alimentos são baseados em seus objetivos de condicionamento físico</string>
 </resources>

@@ -36,7 +36,7 @@ public class scissors extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.scissors_icon;
     }
 
     @Override

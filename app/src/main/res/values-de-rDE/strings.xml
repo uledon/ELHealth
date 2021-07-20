@@ -72,4 +72,9 @@
     <string name="im_fine">Es geht mir gut</string>
     <string name="no_jumping">Kein Springen (wohnungsfreundlich)</string>
     <string name="low_impact">Geringe Auswirkung (freundlich zu übergewichtigen Menschen)</string>
+    <string name="choose_cool_down">Wählen Sie eine benutzerdefinierte Abkühlzeit</string>
+    <string name="enter_calories">Kalorienmenge eingeben</string>
+    <string name="no_number_entered">Keine Nummer eingegeben</string>
+    <string name="cannnot_subtract">Kann nicht subtrahieren</string>
+    <string name="goals_based_foods">Die Lebensmittel richten sich nach deinen Fitnesszielen</string>
 </resources>

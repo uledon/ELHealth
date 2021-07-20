@@ -36,7 +36,7 @@ public class squats extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.squats_icon;
     }
 
     @Override

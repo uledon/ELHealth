@@ -36,7 +36,7 @@ public class reclined_oblique_twist extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.reclined_oblique_twist_icon;
     }
 
     @Override

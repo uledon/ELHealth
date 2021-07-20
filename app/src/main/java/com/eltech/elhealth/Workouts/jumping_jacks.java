@@ -36,7 +36,7 @@ public class jumping_jacks extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.jumping_jack_icon;
     }
 
     @Override

@@ -10,49 +10,52 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Parcelable;
 import android.text.Html;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eltech.elhealth.Tools.DataClass;
-import com.eltech.elhealth.Tools.WorkingOut_PagerAdapter;
 import com.eltech.elhealth.Workouts.Workout;
-import com.eltech.elhealth.Workouts.WorkoutsClass;
 import com.eltech.elhealth.Workouts.cooldown;
-import com.eltech.elhealth.Workouts.mountain_climber;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WorkingOutActivity extends AppCompatActivity {
-    public ViewPager slideViewPager;
     public LinearLayout linearLayout;
-    public WorkingOut_PagerAdapter workingOut_pagerAdapter;
     public TextView[] dots;
-    //public Button next_button;
-    //public Button back_button;
-    public int currentPage;
+    Button next_button, back_button;
     public boolean finish;
+    private final static String SHARED_PREFS = "sharedPrefs";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
-    private final static String SHARED_PREFS = "sharedPrefs";
+    ImageView activity_working_out_slide_image2;
+    TextView activity_working_out_slide_heading2,activity_working_out_slide_desc2;
+    CountDownTimer countDownTimer;
+    int currentInt = 0;
+    Workout currentItem;
+    int level;
+    int cool_down;
+    long timeLeft;
+    ArrayList<Workout> fullWorkOutArray = new ArrayList<>();
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_working_out);
-        slideViewPager = findViewById(R.id.activity_working_out_slideViewPager);
         linearLayout = findViewById(R.id.activity_working_out_linearLayout);
-        //next_button = findViewById(R.id.activity_working_out_next_button);
-        //back_button = findViewById(R.id.activity_working_out_back_button);
+        next_button = findViewById(R.id.start_button2);
+        back_button = findViewById(R.id.give_up_button2);
         sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        activity_working_out_slide_image2 = findViewById(R.id.activity_working_out_slide_image2);
+        activity_working_out_slide_heading2 = findViewById(R.id.activity_working_out_slide_heading2);
+        activity_working_out_slide_desc2 = findViewById(R.id.activity_working_out_slide_desc2);
         editor = sharedPreferences.edit();
         String level_string = sharedPreferences.getString("seekBar_current_text","0");
-        int level;
+        String cool_down_string = sharedPreferences.getString("choose_cool_down_seekBar_current_text","10");
         try{
             level = Integer.parseInt(level_string);
         }
@@ -60,29 +63,17 @@ public class WorkingOutActivity extends AppCompatActivity {
             level = 0;
             e.printStackTrace();
         }
-        // instead of recreating activities;
-        // retrieve array list from the previous activity.
-            workingOut_pagerAdapter = new WorkingOut_PagerAdapter(this,this, TrainActivity.todayWorkouts,level,10);// make more dynamic later
-            slideViewPager.setAdapter(workingOut_pagerAdapter);
-            addDotsIndicator(0);
-        slideViewPager.setOnTouchListener((v, event) -> true);
-        slideViewPager.setHorizontalScrollBarEnabled(false);
-        slideViewPager.addOnPageChangeListener(viewListener);
-        //next_button.setOnClickListener(v -> slideViewPager.setCurrentItem(currentPage + 1));
-//        back_button.setOnClickListener(v -> {
-//                new AlertDialog.Builder(WorkingOutActivity.this)
-//                        .setTitle(getString(R.string.give_up_title))
-//                        .setMessage(getString(R.string.give_up_message))
-//                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                Intent intent = new Intent(v.getContext(),PointsActivity.class);
-//                                startActivityForResult(intent, 0 );
-//                                finish();
-//                            }
-//                        })
-//                        .setNegativeButton(R.string.no, null)
-//                        .show();
-//        });
+
+        try{
+            cool_down = Integer.parseInt(cool_down_string);
+        }
+        catch(NumberFormatException e){
+            cool_down = 10;
+            e.printStackTrace();
+        }
+        prepareWorkouts(TrainActivity.todayWorkouts);
+        currentItem = fullWorkOutArray.get(currentInt);
+        setUpLayout();
     }
 
     /**
@@ -90,7 +81,7 @@ public class WorkingOutActivity extends AppCompatActivity {
      * Gets the current position and colours the dots
      */
     public void addDotsIndicator(int position){
-        dots = new TextView[workingOut_pagerAdapter.getCount()];
+        dots = new TextView[fullWorkOutArray.size()];
         linearLayout.removeAllViews();
         for(int i = 0; i < dots.length ; i++){
             dots[i] = new TextView(this);
@@ -104,64 +95,100 @@ public class WorkingOutActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Sets the next and finish text on the respective buttons depending on the position
-     */
-    public ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    void setUpLayout(){
+        //setting the back button to give up
+        addDotsIndicator(currentInt);
+        back_button.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle(this.getString(R.string.give_up_title))
+                    .setMessage(this.getString(R.string.give_up_message))
+                    .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                        if(countDownTimer!=null){
+                            countDownTimer.cancel();
+                        }
+                        Intent intent = new Intent(getBaseContext(),PointsActivity.class);
+                        startActivityForResult(intent, 0 );
+                        finish();
+                    })
+                    .setNegativeButton(R.string.no, null)
+                    .show();
+        });
+        if(currentItem.getImage()!=0){
+            activity_working_out_slide_image2.setForeground(getDrawable(currentItem.getImage()));
+        }
+        else{
+            activity_working_out_slide_image2.setForeground(null);
+        }
+        activity_working_out_slide_heading2.setText(currentItem.getTitle());
+        if(currentItem.hasTimer()){
+            next_button.setVisibility(View.VISIBLE);
+            activity_working_out_slide_desc2.setText("" + currentItem.getTimer(cool_down,level) + " sec.");
+            long millisInFuture = currentItem.getTimer(cool_down,level) * 1000 + 3000;// adding buffer for people to start exercises
+            DataClass.print("millis in future is: " + millisInFuture);
+            next_button.setText(getString(R.string.start));
+            next_button.setOnClickListener(v->{
+                next_button.setVisibility(View.GONE);
+                countDownTimer = new CountDownTimer(millisInFuture, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        timeLeft = millisUntilFinished;
+                        int minutes = (int) (timeLeft / 1000) / 60;
+                        int seconds = (int) (timeLeft / 1000) % 60;
+                        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+                        activity_working_out_slide_desc2.setText(timeLeftFormatted);
+                        DataClass.print("slideDesc in onTick is: " + activity_working_out_slide_desc2.getText());
+                        DataClass.print("timeLeftFormatted is: " + timeLeftFormatted);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        if (currentInt == fullWorkOutArray.size()-1){
+                            Intent myIntent = new Intent(getBaseContext(), PointsActivity.class);
+                            startActivityForResult(myIntent, 0);
+                            finish();
+                        }
+                        else{
+                            currentInt ++;
+                            currentItem = fullWorkOutArray.get(currentInt);
+                            setUpLayout();
+                        }
+                    }
+                }.start();
+
+            });
+        }
+        else{
+            DataClass.print("else statement reached workingoutactivity");
+            next_button.setVisibility(View.VISIBLE);
+            next_button.setText(getString(R.string.next));
+            next_button.setOnClickListener(v->{
+                if (currentInt == fullWorkOutArray.size()-1){
+                    Intent myIntent = new Intent(getBaseContext(), PointsActivity.class);
+                    startActivityForResult(myIntent, 0);
+                    finish();
+                }
+                else{
+                        currentInt ++;
+                        currentItem = fullWorkOutArray.get(currentInt);
+                    DataClass.print("workingoutactivity currentItem is:" + currentInt);
+                    DataClass.print("workingoutactivity currentItem headings is:" + getString(fullWorkOutArray.get(currentInt).getTitle()));
+                    setUpLayout();
+                }
+
+            });
+
+            activity_working_out_slide_desc2.setText(currentItem.getReps(level));
         }
 
-        private static final String SHARED_PREFS = "sharedPrefs", FINISH = "finish2";
-        @Override
-        public void onPageSelected(int position) {
-            addDotsIndicator(position);
-            currentPage = position;
-            DataClass.print("working out activity position PagerAdapter: " + position);
-            if (position == 0){
-//                next_button.setEnabled(true);
-//                next_button.setText(getString(R.string.next));
-//
-//                next_button.setOnClickListener(v -> {slideViewPager.setCurrentItem(currentPage + 1);
-                //});
-            }
-            else if (position == dots.length-1){
-//                next_button.setEnabled(true);
-//                next_button.setText(getString(R.string.finish));
-//                next_button.setOnClickListener(view -> {
-//                    Intent myIntent = new Intent(view.getContext(), PointsActivity.class);
-//                    startActivityForResult(myIntent, 0);
-//                    finish = true;
-//                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putBoolean(FINISH,finish);
-//                    editor.apply();
-//                    finish();
-//                });
-
-            }
-            else{
-//                next_button.setEnabled(true);
-//                next_button.setText(getString(R.string.next));
-//                next_button.setOnClickListener(v -> {slideViewPager.setCurrentItem(currentPage + 1);
-//                });
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
-
+    }
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(WorkingOutActivity.this)
                 .setTitle(getString(R.string.give_up_title))
                 .setMessage(getString(R.string.give_up_message))
                 .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
-                    if(workingOut_pagerAdapter.countDownTimer!=null){
-                        workingOut_pagerAdapter.countDownTimer.cancel();
+                    if(countDownTimer!=null){
+                        countDownTimer.cancel();
                     }
                     Intent intent = new Intent(WorkingOutActivity.this,PointsActivity.class);
                     startActivityForResult(intent, 0 );
@@ -169,5 +196,14 @@ public class WorkingOutActivity extends AppCompatActivity {
                 })
                 .setNegativeButton(R.string.no, null)
                 .show();
+    }
+
+    public void prepareWorkouts(ArrayList<Workout> todaysWorkouts){
+        for(Workout workout : todaysWorkouts){
+            fullWorkOutArray.add(workout);
+            if(workout != todaysWorkouts.get(todaysWorkouts.size()-1)){
+            fullWorkOutArray.add(new cooldown());
+            }
+        }
     }
 }

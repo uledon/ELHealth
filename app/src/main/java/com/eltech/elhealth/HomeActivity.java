@@ -1,5 +1,4 @@
 package com.eltech.elhealth;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.eltech.elhealth.Onboarding.HelpActivity;
 import com.eltech.elhealth.Onboarding.OnboardingActivity;
 import com.eltech.elhealth.Tools.DataClass;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
@@ -32,20 +33,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    TextView account_text;
+    TextView account_text,calories_number;
 //    public TextView welcome_text;
     View header;
     //
-    SharedPreferences sharedPreferences; SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     private static final String SHARED_PREFS = "sharedPrefs",WATER_COUNT = "water_count",
             CURRENT_DATE = "current_date", WEIGHT_TEXT = "weight_text";
     ConstraintLayout points_widget, water_widget,weight_widget,calories_widget, train_button,eat_button;
-    Button water_plus_button, water_minus_button, weight_record_button;
+    Button water_plus_button, water_minus_button, weight_record_button, calories_add_button;
     TextView water_text;
-    EditText weight_widget_layout_weight_text;
+    EditText weight_widget_layout_weight_text, add_calories_edit_text;
     //for back button
     private long backPressedTime;
     private Toast backToast;
+    BottomSheetDialog calories_bottom_sheet_dialog;
     @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         //gets shared preferences to store and retrieve values
         sharedPreferences.getString(CURRENT_DATE,"0");
-        System.out.println(sharedPreferences.getString(WATER_COUNT,"0"));
         water_plus_button = water_widget.findViewById(R.id.water_plus_button);
         water_minus_button = water_widget.findViewById(R.id.water_minus_button);
         water_text = water_widget.findViewById(R.id.water_text);
@@ -122,14 +124,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         weight_record_button = weight_widget.findViewById(R.id.weight_record_button);
         weight_widget_layout_weight_text = weight_widget.findViewById(R.id.weight_widget_layout_weight_text);
         weight_widget_layout_weight_text.setText(sharedPreferences.getString(WEIGHT_TEXT,""));
-        System.out.println("weight text before is "+ weight_widget_layout_weight_text.getText());
+        //System.out.println("weight text before is "+ weight_widget_layout_weight_text.getText());
         weight_record_button.setOnClickListener(v->{
                 if(!String.valueOf(weight_widget_layout_weight_text.getText()).equals(sharedPreferences.getString(WEIGHT_TEXT,""))){
                     weight_widget_layout_weight_text.clearFocus();
                     editor.putString(WEIGHT_TEXT, String.valueOf(weight_widget_layout_weight_text.getText()));
                     editor.apply();
-                    System.out.println("weight text is "+weight_widget_layout_weight_text.getText());
-                    System.out.println("in shared prefs is: " + sharedPreferences.getString(WEIGHT_TEXT,""));
+                   // System.out.println("weight text is "+weight_widget_layout_weight_text.getText());
+                    //System.out.println("in shared prefs is: " + sharedPreferences.getString(WEIGHT_TEXT,""));
                     Toast.makeText(HomeActivity.this,getString(R.string.recorded),Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -143,7 +145,71 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
      * All functionality of the calories widget is set here;
      */
     private void setCalories_widget(){
+        calories_widget = findViewById(R.id.calories_widget);
+        calories_number = calories_widget.findViewById(R.id.calories_number);
 
+        @SuppressLint("SimpleDateFormat") String date =
+                new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        //gets shared preferences to store and retrieve values
+        sharedPreferences.getString(CURRENT_DATE,"0");
+        if(!date.equals(sharedPreferences.getString(CURRENT_DATE, "0"))){
+            editor.putString(CURRENT_DATE,date);
+            calories_number.setText("0");
+            editor.putInt("calories",0);
+            editor.apply();
+        }
+        int i = sharedPreferences.getInt("calories",0);
+        calories_number.setText("" + i);
+        calories_add_button = calories_widget.findViewById(R.id.calories_add_button);
+        calories_add_button.setOnClickListener(v-> {
+            calories_bottom_sheet_dialog = new BottomSheetDialog(this,R.style.BottomSheetTheme);
+            View sheetView = LayoutInflater.from(getApplicationContext())
+                    .inflate(R.layout.calories_bottom_sheet_dialog_layout,
+                            findViewById(R.id.calories_bottom_sheet));
+            add_calories_edit_text = sheetView.findViewById(R.id.add_calories_edit_text);
+            sheetView.findViewById(R.id.add_calories_button).setOnClickListener(w->{
+                int addingCalories;
+                try{
+                    addingCalories = Integer.parseInt(String.valueOf(add_calories_edit_text.getText()));
+                    DataClass.print("addingCalories is: " + addingCalories);
+                    Toast.makeText(getBaseContext(),getString(R.string.recorded),Toast.LENGTH_SHORT).show();
+                }
+                catch (NumberFormatException e){
+                    addingCalories = 0;
+                    e.printStackTrace();
+                    Toast.makeText(getBaseContext(),getString(R.string.no_number_entered),Toast.LENGTH_SHORT).show();
+                }
+                int calories = addingCalories + sharedPreferences.getInt("calories",0);
+                editor.putInt("calories",calories);
+                editor.apply();
+                calories_number.setText("" + calories);
+
+            });
+            sheetView.findViewById(R.id.minus_calories_button).setOnClickListener(w->{
+                int subtractingCalories;
+                try{
+                    subtractingCalories = Integer.parseInt(String.valueOf(add_calories_edit_text.getText()));
+
+                }
+                catch (NumberFormatException e){
+                    subtractingCalories = 0;
+                    e.printStackTrace();
+                    Toast.makeText(getBaseContext(),getString(R.string.no_number_entered),Toast.LENGTH_SHORT).show();
+                }
+                int calories = sharedPreferences.getInt("calories",0) - subtractingCalories;
+                if(calories >= 0){
+                    Toast.makeText(getBaseContext(),getString(R.string.recorded),Toast.LENGTH_SHORT).show();
+                    calories_number.setText("" + calories);
+                    editor.putInt("calories",calories);
+                    editor.apply();
+                }
+                else{
+                    Toast.makeText(getBaseContext(),getString(R.string.cannnot_subtract),Toast.LENGTH_SHORT).show();// stringify
+                }
+            });
+            calories_bottom_sheet_dialog.setContentView(sheetView);
+            calories_bottom_sheet_dialog.show();
+        });
     }
 
     /**

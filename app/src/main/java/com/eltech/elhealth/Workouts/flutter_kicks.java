@@ -36,7 +36,7 @@ public class flutter_kicks extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.flutter_kicks_icon;
     }
 
     @Override

@@ -17,6 +17,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,17 +31,22 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/activity_train_start_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_train_day_text" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_train_day_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/activity_train_day_number"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:text="1"
-        android:textAlignment="center"
+        android:layout_marginEnd="33dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textAlignment="textStart"
         android:textColor="@color/colorAccent4"
         android:textSize="24sp"
         android:textStyle="bold"

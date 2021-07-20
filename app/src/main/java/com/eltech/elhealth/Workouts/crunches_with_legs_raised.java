@@ -36,7 +36,7 @@ public class crunches_with_legs_raised extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.crunches_legs_raised_icon;
     }
 
     @Override

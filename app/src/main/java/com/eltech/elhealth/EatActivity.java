@@ -38,35 +38,26 @@ public class EatActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.activity_eat_recyclerView);
         find_out_more_button = findViewById(R.id.find_out_more_button);
         sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            items = new String[0];
         if(sharedPreferences.getBoolean("lose_fat_chip",false)){
             loseFatFoods = Foods.getLoseFatFoods();
-        }
-        else{
-            loseFatFoods = new String[]{""};
+            items = Stream.concat(Arrays.stream(items),Arrays.stream(loseFatFoods)).toArray(String[]::new);
         }
         if(sharedPreferences.getBoolean("build_muscle_chip",false)){
             buildMuscleFoods = Foods.getBuildMuscleFoods();
-        }
-        else{
-            buildMuscleFoods = new String[]{""};
+            items = Stream.concat(Arrays.stream(items),Arrays.stream(buildMuscleFoods)).toArray(String[]::new);
         }
         if(sharedPreferences.getBoolean("improve_endurance_chip",false)){
             improveEnduranceFoods = Foods.getImproveEnduranceFoods();
-        }
-        else{
-            improveEnduranceFoods = new String[]{""};
+            items = Stream.concat(Arrays.stream(items),Arrays.stream(improveEnduranceFoods)).toArray(String[]::new);
         }
         if(sharedPreferences.getBoolean("improve_athletic_skills_chip",false)){
             improveAthleticSkills = Foods.getImproveAthleticSkills();
-        }
-        else{
-            improveAthleticSkills = new String[]{""};
+            items = Stream.concat(Arrays.stream(items),Arrays.stream(improveAthleticSkills)).toArray(String[]::new);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            items = Stream.concat(Arrays.stream(loseFatFoods),Arrays.stream(buildMuscleFoods)).toArray(String[]::new);
-            items = Stream.concat(Arrays.stream(items),Arrays.stream(improveEnduranceFoods)).toArray(String[]::new);
-            items = Stream.concat(Arrays.stream(items),Arrays.stream(improveAthleticSkills)).toArray(String[]::new);
+
         }
         find_out_more_button.setVisibility(View.GONE);
         EatAdapter eatAdapter = new EatAdapter(this, items);

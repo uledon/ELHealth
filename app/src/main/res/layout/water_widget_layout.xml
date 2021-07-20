@@ -49,10 +49,10 @@
         android:layout_height="27dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
-        android:tint="@color/colorAccent4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/water_drop" />
+        app:srcCompat="@drawable/water_drop"
+        app:tint="@color/colorAccent4" />
 
     <Button
         android:id="@+id/water_plus_button"

@@ -36,7 +36,7 @@ public class long_arm_crunches extends  Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.long_arm_crunches_icon;
     }
 
     @Override

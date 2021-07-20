@@ -36,7 +36,7 @@ public class backward_lunge extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.backward_lunge_icon;
     }
 
     @Override

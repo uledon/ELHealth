@@ -36,7 +36,7 @@ public class burpees extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.burpees_icon;
     }
 
     @Override

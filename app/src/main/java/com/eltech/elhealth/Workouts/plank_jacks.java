@@ -36,7 +36,7 @@ public class plank_jacks extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.plank_jack_icon;
     }
 
     @Override

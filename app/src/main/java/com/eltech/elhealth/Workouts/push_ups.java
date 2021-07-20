@@ -36,7 +36,7 @@ public class push_ups extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.push_up_icon;
     }
 
     @Override

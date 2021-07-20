@@ -17,10 +17,10 @@ import com.eltech.elhealth.Workouts.Workout;
 import java.util.ArrayList;
 
 public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.ItemsViewHolder>{
-    Workout[] items;
+    ArrayList<Workout> items;
     Context context;
     int timer, level;
-    public TrainAdapter(Context context, Workout[] items, int level,int timer){
+    public TrainAdapter(Context context, ArrayList<Workout> items, int level,int timer){
         this.context = context;
         this.items = items;
         this.level = level;
@@ -37,7 +37,7 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.ItemsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ItemsViewHolder holder, int position) {
-        Workout current = items[position];
+        Workout current = items.get(position);
         holder.workout_item_title.setText(current.getTitle());
         //holder.workout_reps_text.setText(current.getReps(level));
         if(current.hasTimer()){
@@ -51,7 +51,7 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.ItemsViewHol
 
     @Override
     public int getItemCount() {
-        return items.length;
+        return items.size();
     }
 
     public class ItemsViewHolder extends RecyclerView.ViewHolder{

@@ -191,6 +191,28 @@
             app:layout_constraintTop_toBottomOf="@+id/how_achieve_fitness_chipGroup" />
 
         <TextView
+            android:id="@+id/choose_cool_down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_corners_shape"
+            android:backgroundTint="@color/colorWidget"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/choose_cool_down"
+            android:textColor="@color/textColour"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/any_knee_problems_chipGroup" />
+
+        <TextView
             android:id="@+id/male_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -229,7 +251,7 @@
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/any_knee_problems_chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintVertical_bias="1.0" />
 
         <EditText
@@ -339,6 +361,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seekBar_current_text" />
 
+        <SeekBar
+            android:id="@+id/choose_cool_down_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:max="60"
+            android:min="10"
+            android:theme="@style/Widget.AppCompat.SeekBar.Discrete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choose_cool_down_text"
+            tools:targetApi="o" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
@@ -352,15 +389,40 @@
             app:layout_constraintTop_toBottomOf="@+id/activity_onboarding_seekBar" />
 
         <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="10"
+            android:textColor="@color/textColour"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/choose_cool_down_seekbar"
+            app:layout_constraintTop_toBottomOf="@+id/choose_cool_down_seekbar" />
+
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             android:text="10"
             android:textColor="@color/textColour"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/activity_onboarding_seekBar"
             app:layout_constraintTop_toBottomOf="@+id/activity_onboarding_seekBar" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="21dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="4dp"
+            android:text="60"
+            android:textColor="@color/textColour"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/choose_cool_down_seekbar"
+            app:layout_constraintTop_toBottomOf="@+id/choose_cool_down_seekbar" />
 
         <TextView
             android:id="@+id/seekBar_current_text"
@@ -373,6 +435,18 @@
             app:layout_constraintEnd_toEndOf="@+id/activity_onboarding_seekBar"
             app:layout_constraintStart_toStartOf="@+id/activity_onboarding_seekBar"
             app:layout_constraintTop_toBottomOf="@+id/current_fitness_level_title" />
+
+        <TextView
+            android:id="@+id/choose_cool_down_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/textColour"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/activity_onboarding_seekBar"
+            app:layout_constraintStart_toStartOf="@+id/activity_onboarding_seekBar"
+            app:layout_constraintTop_toBottomOf="@+id/choose_cool_down" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/fitness_goals_chipGroup"

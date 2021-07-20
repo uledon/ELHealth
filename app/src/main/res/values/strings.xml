@@ -94,4 +94,18 @@
     <string name="squats" translatable="false">Squats</string>
     <string name="plank_jacks" translatable="false">Plank Jacks</string>
     <string name="jumping_jacks" translatable="false">Jumping Jacks</string>
+    <string name="bench_press" translatable="false">Bench Press</string>
+    <string name="lat_pull_down" translatable="false">Lat Pull Down</string>
+    <string name="bicept_curls" translatable="false">Bicept Curls</string>
+    <string name="pull_up" translatable="false">Pull up</string>
+    <string name="weighted_lunges" translatable="false">Weighted Lunges</string>
+    <string name="situps" translatable="false">Situps</string>
+    <string name="knee_push_ups" translatable="false">Knee Push Ups</string>
+    <string name="squat_jumps" translatable="false">Squat Jumps</string>
+    <string name="run" translatable="false">Run</string>
+    <string name="choose_cool_down">Choose a custom Cool Down time</string>
+    <string name="enter_calories">Enter calories amount</string>
+    <string name="no_number_entered">No number entered</string>
+    <string name="cannnot_subtract">Cannot subtract</string>
+    <string name="goals_based_foods">The foods are based on your fitness goals</string>
 </resources>

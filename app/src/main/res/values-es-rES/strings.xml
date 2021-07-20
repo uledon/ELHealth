@@ -33,7 +33,7 @@
     <string name="eat_desc">Esta aplicación te permitirá ejercitarte dependiendo de la estructura y capacidad de tu cuerpo. Habrá muchas rutinas diferentes que le ayudarán a ejercitar diferentes partes de su cuerpo.</string>
     <string name="yoga_desc">Esta aplicación pronto también será compatible con Yoga para relajarse y estirar los músculos y prepararse para el próximo ejercicio.</string>
     <string name="day">Día</string>
-    <string name="glasses">/8 Vasos</string>
+    <string name="glasses">/8 Vidrio</string>
     <string name="gender_title">¿Cuál de las siguientes opciones te describe con mayor precisión?</string>
     <string name="male_text">Masculino</string>
     <string name="female_text">Mujer</string>
@@ -72,4 +72,9 @@
     <string name="im_fine">Estoy bien</string>
     <string name="no_jumping">No saltar (apto para apartamentos)</string>
     <string name="low_impact">Bajo impacto (amigable para personas con sobrepeso)</string>
+    <string name="choose_cool_down">Elija un tiempo de enfriamiento personalizado</string>
+    <string name="enter_calories">Ingrese la cantidad de calorías</string>
+    <string name="no_number_entered">No se ingresó ningún número</string>
+    <string name="cannnot_subtract">No se puede restar</string>
+    <string name="goals_based_foods">Los alimentos se basan en sus objetivos de acondicionamiento físico.</string>
 </resources>

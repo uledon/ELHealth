@@ -36,7 +36,7 @@ public class cobra_stretch extends Workout {
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.cobra_stretch_icon;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class heel_touches extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.heel_touch_icon;
     }
 
     @Override

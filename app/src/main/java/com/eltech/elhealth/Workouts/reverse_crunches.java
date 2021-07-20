@@ -36,7 +36,7 @@ public class reverse_crunches extends Workout{
 
     @Override
     public int getImage() {
-        return 0;
+        return R.drawable.reverse_crunches_icon;
     }
 
     @Override

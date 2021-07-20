@@ -33,7 +33,7 @@
     <string name="eat_desc">Cette application vous permettra de vous entraîner en fonction de la structure et de la capacité de votre corps. Il y aura de nombreuses routines différentes qui vous aideront à travailler sur différentes parties de votre corps.</string>
     <string name="yoga_desc">Cette application soutiendra bientôt le yoga pour vous détendre et étirer les muscles et vous préparer au prochain entraînement</string>
     <string name="day">Jour</string>
-    <string name="glasses">/8 Lunettes</string>
+    <string name="glasses">/8 Verre</string>
     <string name="gender_title">Lequel des énoncés suivants vous décrit le plus précisément?</string>
     <string name="male_text">Mâle</string>
     <string name="female_text">Femme</string>
@@ -72,5 +72,10 @@
     <string name="im_fine">Je vais bien</string>
     <string name="no_jumping">Pas de saut (appartement convivial)</string>
     <string name="low_impact">Faible impact (amical pour les personnes en surpoids)</string>
+    <string name="choose_cool_down">Choisissez un temps de récupération personnalisé</string>
+    <string name="enter_calories">Entrez la quantité de calories</string>
+    <string name="no_number_entered">Aucun numéro saisi</string>
+    <string name="cannnot_subtract">Impossible de soustraire</string>
+    <string name="goals_based_foods">Les aliments sont basés sur vos objectifs de fitness</string>
 
 </resources>
