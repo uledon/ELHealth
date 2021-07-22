@@ -95,6 +95,7 @@ public class WorkingOutActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     void setUpLayout(){
         //setting the back button to give up
         addDotsIndicator(currentInt);
@@ -106,9 +107,7 @@ public class WorkingOutActivity extends AppCompatActivity {
                         if(countDownTimer!=null){
                             countDownTimer.cancel();
                         }
-                        Intent intent = new Intent(getBaseContext(),PointsActivity.class);
-                        startActivityForResult(intent, 0 );
-                        finish();
+                        changeScreens("give_up");
                     })
                     .setNegativeButton(R.string.no, null)
                     .show();
@@ -143,9 +142,8 @@ public class WorkingOutActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         if (currentInt == fullWorkOutArray.size()-1){
-                            Intent myIntent = new Intent(getBaseContext(), PointsActivity.class);
-                            startActivityForResult(myIntent, 0);
-                            finish();
+                            currentInt++;
+                            changeScreens("finish");
                         }
                         else{
                             currentInt ++;
@@ -163,9 +161,8 @@ public class WorkingOutActivity extends AppCompatActivity {
             next_button.setText(getString(R.string.next));
             next_button.setOnClickListener(v->{
                 if (currentInt == fullWorkOutArray.size()-1){
-                    Intent myIntent = new Intent(getBaseContext(), PointsActivity.class);
-                    startActivityForResult(myIntent, 0);
-                    finish();
+                    currentInt++;
+                    changeScreens("finish");
                 }
                 else{
                         currentInt ++;
@@ -190,9 +187,7 @@ public class WorkingOutActivity extends AppCompatActivity {
                     if(countDownTimer!=null){
                         countDownTimer.cancel();
                     }
-                    Intent intent = new Intent(WorkingOutActivity.this,PointsActivity.class);
-                    startActivityForResult(intent, 0 );
-                    finish();
+                    changeScreens("give_up");
                 })
                 .setNegativeButton(R.string.no, null)
                 .show();
@@ -205,5 +200,21 @@ public class WorkingOutActivity extends AppCompatActivity {
             fullWorkOutArray.add(new cooldown());
             }
         }
+    }
+    void changeScreens(String mode){
+        Intent intent = new Intent(WorkingOutActivity.this,PointsActivity.class);
+        switch (mode){
+            case "give_up":
+                intent.putExtra("finished_exercises",currentInt);
+                intent.putExtra("total_exercises",TrainActivity.todayWorkouts.size());
+                intent.putExtra("finish",false);
+                break;
+            case "finish":
+                intent.putExtra("total_exercises",TrainActivity.todayWorkouts.size());
+                intent.putExtra("finish",true);
+                break;
+        }
+        startActivity(intent);
+        finish();
     }
 }

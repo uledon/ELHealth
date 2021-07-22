@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,22 +30,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    //drawer and toolbar variables
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     TextView account_text,calories_number;
-//    public TextView welcome_text;
     View header;
-    //
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private static final String SHARED_PREFS = "sharedPrefs",WATER_COUNT = "water_count",
             CURRENT_DATE = "current_date", WEIGHT_TEXT = "weight_text";
     ConstraintLayout points_widget, water_widget,weight_widget,calories_widget, train_button,eat_button;
     Button water_plus_button, water_minus_button, weight_record_button, calories_add_button;
-    TextView water_text;
+    TextView water_text,points_text2;
     EditText weight_widget_layout_weight_text, add_calories_edit_text;
+    ProgressBar points_progressBar;
     //for back button
     private long backPressedTime;
     private Toast backToast;
@@ -75,6 +74,37 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
      * All functionality of the points widget is set here;
      */
     private void setPoints_widget(){
+        points_widget = findViewById(R.id.points_widget);
+        points_progressBar = points_widget.findViewById(R.id.points_progressBar);
+        points_text2 = points_widget.findViewById(R.id.points_text2);
+        points_widget.setOnClickListener(v-> {
+            Intent pointIntent = new Intent(HomeActivity.this, PointsActivity.class);
+            pointIntent.putExtra("from_home",true);
+            startActivity(pointIntent);
+        });
+        @SuppressLint("SimpleDateFormat") String date =
+                new SimpleDateFormat("MM").format(new Date());
+        DataClass.print("date in points is: " + date);
+        String date_str = sharedPreferences.getString("month",date);
+        int points = 0;
+        if(!date_str.equals(date)){
+            editor.putInt("points",points);
+            editor.putString("month",date);
+            editor.apply();
+        }
+        else{
+            points = sharedPreferences.getInt("points",0);
+        }
+
+        points_text2.setText(String.valueOf(points));
+        points_progressBar.setProgress(points);
+
+    }
+
+    @Override
+    protected void onRestart() {
+        setPoints_widget();
+        super.onRestart();
     }
 
     /**

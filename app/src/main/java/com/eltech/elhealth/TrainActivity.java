@@ -117,7 +117,10 @@ public class TrainActivity extends AppCompatActivity {
         }
         switch (todays_chosen_exercise) {
             case lose_fat_chip_string:
-                todayWorkouts = prepareWorkouts(WorkoutsClass.getLoseFatWorkouts());
+                //todayWorkouts = prepareWorkouts(WorkoutsClass.getLoseFatWorkouts());//
+                todayWorkouts = new ArrayList<>();
+                todayWorkouts.add(new mountain_climber());
+                todayWorkouts.add(new mountain_climber());
                 activity_train_day_number.setText(getString(R.string.lose_fat));
                 break;
             case build_muscle_chip_string:
