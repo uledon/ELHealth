@@ -108,4 +108,11 @@
     <string name="no_number_entered">No number entered</string>
     <string name="cannnot_subtract">Cannot subtract</string>
     <string name="goals_based_foods">The foods are based on your fitness goals</string>
+    <string name="reset">Reset</string>
+    <string name="sure_reset">Reset your personal details?</string>
+    <string name="finished_exercises_1">"Congratulations you have completed all "</string>
+    <string name="finished_exercises_2">" exercises and gained 10 points"</string>
+    <string name="lost_points">You gave up and lost 5 points</string>
+    <string name="gave_up_1">"You gave up but gained "</string>
+    <string name="lost_all_points">You gave up and lost all your points</string>
 </resources>

@@ -16,7 +16,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Onboarding.OnboardingActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".PointsActivity" />
         <activity android:name=".WorkingOutActivity" />
         <activity android:name=".EatActivity" />
         <activity android:name=".TrainActivity" />

@@ -77,11 +77,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         points_widget = findViewById(R.id.points_widget);
         points_progressBar = points_widget.findViewById(R.id.points_progressBar);
         points_text2 = points_widget.findViewById(R.id.points_text2);
-        points_widget.setOnClickListener(v-> {
-            Intent pointIntent = new Intent(HomeActivity.this, PointsActivity.class);
-            pointIntent.putExtra("from_home",true);
-            startActivity(pointIntent);
-        });
+
         @SuppressLint("SimpleDateFormat") String date =
                 new SimpleDateFormat("MM").format(new Date());
         DataClass.print("date in points is: " + date);
@@ -96,14 +92,47 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             points = sharedPreferences.getInt("points",0);
         }
 
+
+        if (getIntent().hasExtra("finish")) {
+            boolean finish = (boolean) getIntent().getExtras().get("finish");
+            int finished_exercises;
+            int total_exercises = (int) getIntent().getExtras().get("total_exercises");
+            if (finish) {
+                finished_exercises = total_exercises;
+                points += 10;
+                Toast.makeText(this, getString(R.string.finished_exercises_1) +
+                        finished_exercises + getString(R.string.finished_exercises_2), Toast.LENGTH_SHORT).show();
+            } else {
+                finished_exercises = (int) getIntent().getExtras().get("finished_exercises");
+                if (finished_exercises == 0) {
+                    if(points -5 >=0){
+                        points -= 5;
+                        Toast.makeText(this,getString(R.string.lost_points),Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        points = 0;
+                        Toast.makeText(this, getString(R.string.lost_all_points), Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    int gainedPoints = Math.round((float) finished_exercises / (float) total_exercises * 10);
+                    points += gainedPoints;
+                    Toast.makeText(this,getString(R.string.gave_up_1) + gainedPoints + " " + getString(R.string.points),Toast.LENGTH_SHORT).show();
+                }
+                DataClass.print("points in pointsActivity is: " + points);
+
+            }
+            editor.putInt("points", points);
+            editor.apply();
+        }
         points_text2.setText(String.valueOf(points));
         points_progressBar.setProgress(points);
-
     }
 
     @Override
     protected void onRestart() {
         setPoints_widget();
+        setWeight_widget();
         super.onRestart();
     }
 

@@ -8,10 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.InputType;
+import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -27,7 +26,7 @@ import java.util.Calendar;
 
 public class OnboardingActivity extends AppCompatActivity {
 
-    Button activity_onboarding_finish_button;
+    Button activity_onboarding_finish_button,activity_onboarding_reset_button;
     ImageButton male_image_button,female_image_button;
     TextView seekBar_current_text,choose_cool_down_text;
     EditText name_edit_text,dob_edit_text,height_edit_text,weight_edit_text;
@@ -74,6 +73,7 @@ public class OnboardingActivity extends AppCompatActivity {
         activity_onboarding_finish_button = findViewById(R.id.activity_onboarding_finish_button);
         sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         //choose_cool_down
         choose_cool_down_text = findViewById(R.id.choose_cool_down_text);
         choose_cool_down_seekbar = findViewById(R.id.choose_cool_down_seekbar);
@@ -124,6 +124,24 @@ public class OnboardingActivity extends AppCompatActivity {
             im_fine_chip.setChecked(sharedPreferences.getBoolean("im_fine_chip",false));
             no_jumping_chip.setChecked(sharedPreferences.getBoolean("no_jumping_chip",false));
             low_impact_chip.setChecked(sharedPreferences.getBoolean("low_impact_chip",false));
+            //setting reset button
+            activity_onboarding_reset_button = findViewById(R.id.activity_onboarding_reset_button);
+            activity_onboarding_reset_button.setVisibility(View.VISIBLE);
+            activity_onboarding_reset_button.setOnClickListener(v -> {
+                new AlertDialog.Builder(OnboardingActivity.this)
+                        .setTitle(getString(R.string.reset) + "?")
+                        .setMessage(getString(R.string.sure_reset))
+                        .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                            reset();
+                            editor.putInt("points", 0);
+                            editor.putString("water_count", "0");
+                            editor.putInt("calories",0);
+                            editor.apply();
+                            activity_onboarding_reset_button.setVisibility(View.INVISIBLE);
+                        })
+                        .setNegativeButton(R.string.no, null)
+                        .show();
+            });
         }
         //setting date picker for date edit text
         dob_edit_text.setInputType(InputType.TYPE_NULL);
@@ -224,7 +242,27 @@ public class OnboardingActivity extends AppCompatActivity {
             }
         });
     }
-
+     void reset(){
+        name_edit_text.setText("");
+        dob_edit_text.setText("");
+        height_edit_text.setText("");
+        weight_edit_text.setText("");
+        seekBar_current_text.setText("");
+        activity_onboarding_seekBar.setProgress(0);
+        lose_fat_chip.setChecked(false);
+        build_muscle_chip.setChecked(false);
+        improve_endurance_chip.setChecked(false);
+        maintain_body_shape.setChecked(false);
+        improve_athletic_skills_chip.setChecked(false);
+        using_bodyweight_chip.setChecked(false);
+        using_gym_equipment_chip.setChecked(false);
+        using_weights_chip.setChecked(false);
+        im_fine_chip.setChecked(false);
+        no_jumping_chip.setChecked(false);
+        low_impact_chip.setChecked(false);
+        choose_cool_down_text.setText("");
+        choose_cool_down_seekbar.setProgress(10);
+     }
     public boolean canFinish(){
         if(name_edit_text.getText().toString().trim().length() > 0) {
             if (gender != 0) {

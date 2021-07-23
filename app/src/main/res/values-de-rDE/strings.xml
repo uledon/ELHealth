@@ -77,4 +77,11 @@
     <string name="no_number_entered">Keine Nummer eingegeben</string>
     <string name="cannnot_subtract">Kann nicht subtrahieren</string>
     <string name="goals_based_foods">Die Lebensmittel richten sich nach deinen Fitnesszielen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="sure_reset">Ihre persönlichen Daten zurücksetzen?</string>
+    <string name="finished_exercises_2">" Übungen und 10 Punkte gewonnen"</string>
+    <string name="finished_exercises_1">"Herzlichen Glückwunsch, Sie haben alles abgeschlossen "</string>
+    <string name="lost_points">Du hast aufgegeben und 5 Punkte verloren</string>
+    <string name="gave_up_1">Du hast aufgegeben, aber gewonnen</string>
+    <string name="lost_all_points">Du hast aufgegeben und alle deine Punkte verloren</string>
 </resources>

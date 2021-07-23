@@ -77,4 +77,11 @@
     <string name="no_number_entered">No se ingresó ningún número</string>
     <string name="cannnot_subtract">No se puede restar</string>
     <string name="goals_based_foods">Los alimentos se basan en sus objetivos de acondicionamiento físico.</string>
+    <string name="reset">Reiniciar</string>
+    <string name="sure_reset">¿Restablecer sus datos personales?</string>
+    <string name="finished_exercises_1">"Felicitaciones, ha completado todos "</string>
+    <string name="finished_exercises_2">" ejercicios y ganó 10 puntos"</string>
+    <string name="lost_points">Te diste por vencido y perdiste 5 puntos</string>
+    <string name="gave_up_1">Te rindiste pero ganaste</string>
+    <string name="lost_all_points">Te rindiste y perdiste todos tus puntos</string>
 </resources>

@@ -202,7 +202,7 @@ public class WorkingOutActivity extends AppCompatActivity {
         }
     }
     void changeScreens(String mode){
-        Intent intent = new Intent(WorkingOutActivity.this,PointsActivity.class);
+        Intent intent = new Intent(WorkingOutActivity.this,HomeActivity.class);
         switch (mode){
             case "give_up":
                 intent.putExtra("finished_exercises",currentInt);
