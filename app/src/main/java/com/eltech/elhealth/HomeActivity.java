@@ -1,3 +1,4 @@
+
 package com.eltech.elhealth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -154,6 +155,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(!date.equals(sharedPreferences.getString(CURRENT_DATE, "0"))){
             editor.putString(CURRENT_DATE,date);
             water_text.setText("0");
+            editor.putString(WATER_COUNT, String.valueOf(water_text.getText()));
+            editor.apply();
         }
         water_plus_button.setOnClickListener(v -> {
             int water_glasses_int = Integer.parseInt(String.valueOf(water_text.getText()));

@@ -55,11 +55,11 @@ public class HelpActivity extends AppCompatActivity {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.textColour));
+            dots[i].setTextColor(getColor(R.color.textColour));
             linearLayout.addView(dots[i]);
         }
         if (dots.length > 0){
-            dots[position].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            dots[position].setTextColor(getColor(R.color.colorAccent2));
         }
     }
 

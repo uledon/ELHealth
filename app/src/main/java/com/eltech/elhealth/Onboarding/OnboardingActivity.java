@@ -36,6 +36,7 @@ public class OnboardingActivity extends AppCompatActivity {
     Chip using_bodyweight_chip,using_gym_equipment_chip,using_weights_chip;
     Chip im_fine_chip,no_jumping_chip,low_impact_chip;
     int gender = 0;
+    boolean resetClicked;
     private static final String SHARED_PREFS = "sharedPrefs", FINISH = "finish";
     SharedPreferences sharedPreferences;
     @Override
@@ -133,10 +134,7 @@ public class OnboardingActivity extends AppCompatActivity {
                         .setMessage(getString(R.string.sure_reset))
                         .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
                             reset();
-                            editor.putInt("points", 0);
-                            editor.putString("water_count", "0");
-                            editor.putInt("calories",0);
-                            editor.apply();
+                            resetClicked = true;
                             activity_onboarding_reset_button.setVisibility(View.INVISIBLE);
                         })
                         .setNegativeButton(R.string.no, null)
@@ -202,6 +200,11 @@ public class OnboardingActivity extends AppCompatActivity {
         //setting finish button by checking if the required fields have been checked.
         activity_onboarding_finish_button.setOnClickListener(v -> {
             if(canFinish()){
+                if(resetClicked){
+                    editor.putInt("points", 0);
+                    editor.putString("water_count", "0");
+                    editor.putInt("calories",0);
+                }
                 Intent homeIntent = new Intent(OnboardingActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
                 editor.putBoolean(FINISH,true);
@@ -260,7 +263,7 @@ public class OnboardingActivity extends AppCompatActivity {
         im_fine_chip.setChecked(false);
         no_jumping_chip.setChecked(false);
         low_impact_chip.setChecked(false);
-        choose_cool_down_text.setText("");
+        choose_cool_down_text.setText("10");
         choose_cool_down_seekbar.setProgress(10);
      }
     public boolean canFinish(){
