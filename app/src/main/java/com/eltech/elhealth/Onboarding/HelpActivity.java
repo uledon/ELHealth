@@ -89,7 +89,7 @@ public class HelpActivity extends AppCompatActivity {
                 next_button.setText(getString(R.string.finish));
                 next_button.setOnClickListener(view -> {
                     Intent myIntent = new Intent(view.getContext(), HomeActivity.class);
-                    startActivityForResult(myIntent, 0);
+                    startActivity(myIntent);
                     SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
                     boolean finished = sharedPreferences.getBoolean(FINISH, false);
                     if (finished){

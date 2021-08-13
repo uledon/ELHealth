@@ -78,7 +78,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         points_widget = findViewById(R.id.points_widget);
         points_progressBar = points_widget.findViewById(R.id.points_progressBar);
         points_text2 = points_widget.findViewById(R.id.points_text2);
-
         @SuppressLint("SimpleDateFormat") String date =
                 new SimpleDateFormat("MM").format(new Date());
         DataClass.print("date in points is: " + date);
@@ -92,8 +91,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         else{
             points = sharedPreferences.getInt("points",0);
         }
-
-
         if (getIntent().hasExtra("finish")) {
             boolean finish = (boolean) getIntent().getExtras().get("finish");
             int finished_exercises;
@@ -209,13 +206,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void setCalories_widget(){
         calories_widget = findViewById(R.id.calories_widget);
         calories_number = calories_widget.findViewById(R.id.calories_number);
-
         @SuppressLint("SimpleDateFormat") String date =
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         //gets shared preferences to store and retrieve values
-        sharedPreferences.getString(CURRENT_DATE,"0");
-        if(!date.equals(sharedPreferences.getString(CURRENT_DATE, "0"))){
-            editor.putString(CURRENT_DATE,date);
+        sharedPreferences.getString("calories_date","0");
+        DataClass.print("calories date is: " + date );
+        if(!date.equals(sharedPreferences.getString("calories_date", "0"))){
+            editor.putString("calories_date",date);
             calories_number.setText("0");
             editor.putInt("calories",0);
             editor.apply();
@@ -245,13 +242,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 editor.putInt("calories",calories);
                 editor.apply();
                 calories_number.setText("" + calories);
-
             });
             sheetView.findViewById(R.id.minus_calories_button).setOnClickListener(w->{
                 int subtractingCalories;
                 try{
                     subtractingCalories = Integer.parseInt(String.valueOf(add_calories_edit_text.getText()));
-
                 }
                 catch (NumberFormatException e){
                     subtractingCalories = 0;
@@ -282,6 +277,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         train_button.setOnClickListener(v -> {
             Intent homeIntent = new Intent(HomeActivity.this, TrainActivity.class);
             startActivity(homeIntent);
+            finish();
         });
     }
 
@@ -343,6 +339,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Thread thread1 = new Thread(runnable1);
         thread1.start();
     }
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

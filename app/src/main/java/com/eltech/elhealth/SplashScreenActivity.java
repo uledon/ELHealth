@@ -38,7 +38,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     private Toast backToast;
     @Override
     public void onBackPressed() {
-
         if(backPressedTime + 2000 > System.currentTimeMillis()){
             backToast.cancel();
             super.onBackPressed();
@@ -51,5 +50,4 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
         backPressedTime = System.currentTimeMillis();
     }
-
 }

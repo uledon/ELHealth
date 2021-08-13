@@ -159,7 +159,6 @@ public class TrainActivity extends AppCompatActivity {
     /// add plank after each set
     /// add cobra stretch to end the routine.
     private ArrayList<Workout> prepareWorkouts(ArrayList<Workout> todaysWorkOuts){
-
         Random random = new Random();
         ArrayList<Workout> newWorkoutsArrayList = new ArrayList<>();
         boolean plausibleWorkout;
@@ -169,28 +168,27 @@ public class TrainActivity extends AppCompatActivity {
             plausibleWorkout = true;
             // the following need to be verified more.
             if(workout.requiresEquipments()&&!sharedPreferences.getBoolean("using_gym_equipment_chip",false)){
-                plausibleWorkout = false;
-            }
+                plausibleWorkout = false; }
             if(workout.requiresWeights()&&!sharedPreferences.getBoolean("using_weights_chip",false)){
-                plausibleWorkout = false;
-            }
+                plausibleWorkout = false; }
             if(workout.affectsKnee()&&sharedPreferences.getBoolean("no_jumping_chip",false)){
-                plausibleWorkout = false;
-            }
+                plausibleWorkout = false; }
             if(workout.affectsKnee()&&sharedPreferences.getBoolean("low_impact_chip",false)){
-                plausibleWorkout = false;
-            }
+                plausibleWorkout = false; }
             if(plausibleWorkout){
             if(!newWorkoutsArrayList.contains(todaysWorkOuts.get(newWorkout))) {
-                newWorkoutsArrayList.add(todaysWorkOuts.get(newWorkout));
-            }
-            }
-        }
+                newWorkoutsArrayList.add(todaysWorkOuts.get(newWorkout)); } } }
         newWorkoutsArrayList.add(new plank());
         newWorkoutsArrayList.addAll(newWorkoutsArrayList);
         newWorkoutsArrayList.addAll(newWorkoutsArrayList);
         newWorkoutsArrayList.add(0,new mountain_climber());
         newWorkoutsArrayList.add(new cobra_stretch());
         return newWorkoutsArrayList;
+    }
+    @Override
+    public void onBackPressed() {
+        Intent homeIntent = new Intent(TrainActivity.this, HomeActivity.class);
+        startActivity(homeIntent);
+        finish();
     }
 }
