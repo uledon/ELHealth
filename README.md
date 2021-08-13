@@ -18,9 +18,23 @@ Some behind the scenes features included are:
   - French
   - German
   - Italian
-  - Portugues
+  - Portuguese
   - Spanish
 - Dark mode
+
+## Documentation
+ You will need an IDE that supports Java and Android development
+ Android studio is recommended 
+  
+  1. Clone this repository at <code>https://github.com/uledon/ELHealth.git</code>
+      or download the Zip and extract the contents
+  3. Import the repository to your IDE of choice
+
+## Generating signed APK
+From Android Studio:
+1. ***Build*** menu
+2. ***Generate Signed APK...***
+3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
 
 # Built with
 
@@ -39,3 +53,12 @@ EL Rahman
 # License
 
 This project is a ( but not limited ) property of Aston University
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -m 'Add some feature')
+4. Push your branch (git push origin my-new-feature)
+5. Create a new Pull Request
+
